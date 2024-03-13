@@ -58,11 +58,8 @@ public class AlunoController {
 		return false;
 	}
 	
-	public void editarAluno(AlunoDTO a) 
+	public void editarAluno(AlunoDTO a, String nome, String email2, String senha2) 
 			throws EmailInvalidoException, SenhaMuitoPequenaException, CamposVaziosException, EmailJaCadastradoException, AlunoJaMatriculadoException{
-		String nome = a.getNome().trim();
-		String email2 = a.getCEmail().trim();
-		String senha2 = a.getCSenha().trim();
 		
 		if(nome.isBlank() || email2.isBlank() || senha2.isBlank()) {
 			throw new CamposVaziosException();
@@ -71,6 +68,10 @@ public class AlunoController {
 		}
 		aServices.emailExiste(email2, a);
 		AlunoServices.validarEmail(email2);
+		a.setNome(nome);
+		a.setEmail(email2);
+		a.setSenha(senha2);
+		alunoDAO.editarAluno(a);
 		
 		
 	}

@@ -19,7 +19,6 @@ public class AlunoDAO implements DAO{
 
 	private DB dados = new DB();
 	private AlunoServices aServices = dados.recuperarDados();
-	private ArrayList<Aluno> alunos = aServices.getTodosOsAlunos();
 
 	
 	@Override
@@ -41,22 +40,28 @@ public class AlunoDAO implements DAO{
 
 	@Override
 	public void excluirAluno(AlunoDTO a) {
-		alunos.remove(a);
-		dados.salvarDados(aServices);
+		for (Aluno aluno: aServices.getTodosOsAlunos()) {
+			if (aluno.getMatricula().equals(a.getMatricula())) {
+				aServices.getTodosOsAlunos().remove(aluno);
+				dados.salvarDados(aServices);
+				break;
+			}
+		}
 	}
+	
 
 	@Override
 	public void editarAluno(AlunoDTO alunoDTO) 
 			throws EmailInvalidoException, SenhaMuitoPequenaException, CamposVaziosException, EmailJaCadastradoException, AlunoJaMatriculadoException {
-		for(int i = 0; i < alunos.size(); i++) {
-			if(alunos.get(i).getMatricula().equals(alunoDTO.getMatricula())){
-				Aluno a = alunos.get(i);
-				a.setEmail(alunoDTO.getEmail());
+		for(int i = 0; i < aServices.getTodosOsAlunos().size(); i++) {
+			if(aServices.getTodosOsAlunos().get(i).getMatricula().equals(alunoDTO.getMatricula())){
+				Aluno a = aServices.getTodosOsAlunos().get(i);
 				a.setNome(alunoDTO.getNome());
+				a.setEmail(alunoDTO.getEmail());
 				a.setSenha(alunoDTO.getSenha());
-				a.setSexo(alunoDTO.getSexo());
 				a.setMatricula(alunoDTO.getMatricula());
-				alunos.set(i, a);
+				a.setSexo(alunoDTO.getSexo());
+				aServices.getTodosOsAlunos().set(i, a);
 				dados.salvarDados(aServices);
 				break;
 			}
@@ -81,7 +86,7 @@ public class AlunoDAO implements DAO{
 	}
 
 	public ArrayList<Aluno> getAlunos() {
-		return alunos;
+		return aServices.getTodosOsAlunos();
 	}	
 
 }

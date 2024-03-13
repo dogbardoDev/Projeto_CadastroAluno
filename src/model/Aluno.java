@@ -13,11 +13,11 @@ public class Aluno{
 	private Sexo sexo;
 	
 	public Aluno(AlunoDTO alunoDTO) {
-		this.nome = alunoDTO.getNome();
-		this.email = alunoDTO.getEmail();
-		this.senha = alunoDTO.getSenha();
-		this.matricula = alunoDTO.getMatricula();
-		this.sexo = alunoDTO.getSexo();
+		nome = alunoDTO.getNome();
+		email = alunoDTO.getEmail();
+		senha = alunoDTO.getSenha();
+		matricula = alunoDTO.getMatricula();
+		sexo = alunoDTO.getSexo();
 	}
 	
 	public Aluno(){

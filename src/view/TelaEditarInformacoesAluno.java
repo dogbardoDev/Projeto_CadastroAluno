@@ -169,12 +169,9 @@ public class TelaEditarInformacoesAluno extends TelaPadrao{
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-					AlunoDTO alunoDTO = new AlunoDTO();	
-					alunoDTO.setNome(tNome.getText());
-					alunoDTO.setCEmail(tNovoEmail.getText());
-					alunoDTO.setCSenha(tNovaSenha.getText());
 					
-					getAlunoController().editarAluno(alunoDTO);
+					
+					getAlunoController().editarAluno(aluno, tNome.getText(), tNovoEmail.getText(), tNovaSenha.getText());
 					FabricaJOptionPane.criarMsgValido("Edição feita com sucesso!");
 					dispose();
 					
