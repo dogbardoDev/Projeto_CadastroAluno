@@ -18,19 +18,19 @@ public class AlunoDAO implements DAO{
 	
 	@Override
 	public void cadastrarAluno(AlunoDTO a) throws AlunoJaMatriculadoException, EmailJaCadastradoException {
-		Aluno aluno = new Aluno(a);
-		adicionarAluno(aluno);
+		adicionarAluno(a);
 		dados.salvarDados(aServices);
 		
 	}
 	
 	@Override
-	public void adicionarAluno (Aluno a) throws AlunoJaMatriculadoException, EmailJaCadastradoException{
+	public void adicionarAluno (AlunoDTO a) throws AlunoJaMatriculadoException, EmailJaCadastradoException{
 		if (!aServices.getTodosOsAlunos().isEmpty()) {
-			aServices.verificarMatricula(a.getMatricula());
-			aServices.emailExiste(a.getEmail()); 
+			aServices.verificarMatricula(a);
+			aServices.emailExiste(a); 
 		}
-		aServices.getTodosOsAlunos().add(a);
+		Aluno aluno = new Aluno(a);
+		aServices.getTodosOsAlunos().add(aluno);
 	}
 
 	@Override

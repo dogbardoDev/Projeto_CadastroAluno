@@ -9,5 +9,13 @@
       <matricula>123454321234</matricula>
       <sexo>MASCULINO</sexo>
     </model.Aluno>
+    <model.Aluno>
+      <alunoDTO/>
+      <nome>andeson da silva santos</nome>
+      <email>anderson@gmail.com</email>
+      <senha>12345678</senha>
+      <matricula>123454321265</matricula>
+      <sexo>MASCULINO</sexo>
+    </model.Aluno>
   </todosOsAlunos>
 </model.AlunoServices>

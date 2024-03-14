@@ -18,23 +18,14 @@ public class AlunoServices{
 
 	private ArrayList<Aluno> todosOsAlunos = new ArrayList<Aluno>();
 
-	public static boolean validarEmail(String login) throws EmailInvalidoException {
+	public static boolean validarEmail(AlunoDTO aluno) throws EmailInvalidoException {
 		String padraoEmail = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
 		Pattern pattern = Pattern.compile(padraoEmail, Pattern.CASE_INSENSITIVE);
-		Matcher matcher = pattern.matcher(login);
+		Matcher matcher = pattern.matcher(aluno.getEmail());
 		if (!matcher.matches()) {
 			throw new EmailInvalidoException();
 		}
 		return matcher.matches();
-	}
-
-	public boolean emailExiste(String email) throws EmailJaCadastradoException {
-		for (Aluno aluno : todosOsAlunos) {
-			if (aluno.getEmail().equalsIgnoreCase(email)) {
-				throw new EmailJaCadastradoException();
-			}
-		}
-		return false;
 	}
 
 	public boolean emailExiste(AlunoDTO alunoDTO) throws EmailJaCadastradoException {
@@ -48,20 +39,11 @@ public class AlunoServices{
 		return false;
 	}
 
-	public boolean verificarMatricula(String matricula) throws AlunoJaMatriculadoException {
-		for (Aluno aluno: todosOsAlunos) {
-			if (aluno.getMatricula().equals(matricula)){
-				throw new AlunoJaMatriculadoException();
-			}
-
-		}return false;
-	}
-
-	public boolean verificarMatricula(AlunoDTO alunoDTO, String matricula) throws AlunoJaMatriculadoException {
+	public boolean verificarMatricula(AlunoDTO alunoDTO) throws AlunoJaMatriculadoException {
 		Aluno a = new Aluno(alunoDTO);
 		for (Aluno aluno: todosOsAlunos) {
 			if (aluno != a) {
-				if (aluno.getMatricula().equals(matricula)){
+				if (aluno.getMatricula().equals(alunoDTO.getMatricula())){
 					throw new AlunoJaMatriculadoException();
 				}
 			}
@@ -69,11 +51,10 @@ public class AlunoServices{
 		}return false;
 	}
 
-	public String recuperarSenhaPeloEmail (String email) throws EmailNaoEncontradoException {
-	
-		for (Aluno aluno: todosOsAlunos) {
-			if (aluno.getEmail().equalsIgnoreCase(email)) {
-				return aluno.getSenha();
+	public String recuperarSenhaPeloEmail (AlunoDTO aluno) throws EmailNaoEncontradoException {
+		for (Aluno a: todosOsAlunos) {
+			if (a.getEmail().equalsIgnoreCase(aluno.getEmail())) {
+				return a.getSenha();
 			}
 		}
 		throw new EmailNaoEncontradoException();
@@ -81,26 +62,26 @@ public class AlunoServices{
 
 
 
-	public AlunoDTO login(String email, String senha, AlunoServices alunoServices) throws CredenciaisInvalidasException {
+	public AlunoDTO login(AlunoDTO aluno) throws CredenciaisInvalidasException {
 
-		for(Aluno a: alunoServices.getTodosOsAlunos()) {
-			if (a.getEmail().equalsIgnoreCase(email) && a.getSenha().equals(senha)) {
-				AlunoDTO alunoDTO = new AlunoDTO();
-				alunoDTO.setNome(a.getNome());
-				alunoDTO.setEmail(a.getEmail());
-				alunoDTO.setSenha(a.getSenha());
-				alunoDTO.setMatricula(a.getMatricula());
-				alunoDTO.setSexo(a.getSexo());
+		for(Aluno a: getTodosOsAlunos()) {
+			if (a.getEmail().equalsIgnoreCase(aluno.getEmail()) && a.getSenha().equals(aluno.getSenha())) {
+				aluno = new AlunoDTO();
+				aluno.setNome(a.getNome());
+				aluno.setEmail(a.getEmail());
+				aluno.setSenha(a.getSenha());
+				aluno.setMatricula(a.getMatricula());
+				aluno.setSexo(a.getSexo());
 				
-				return alunoDTO;
+				return aluno;
 			}
 		}throw new CredenciaisInvalidasException();
 	}
 	
 
-	public void mandarSenhaPorEmail(String email) throws EmailNaoEncontradoException, EmailException{
-		String senha = recuperarSenhaPeloEmail(email);
-		Mensageiro.enviarEmail(email, "Recuperação de Senha" ,"Sua senha atual é: " + senha);
+	public void mandarSenhaPorEmail(AlunoDTO aluno) throws EmailNaoEncontradoException, EmailException{
+		String senha = recuperarSenhaPeloEmail(aluno);
+		Mensageiro.enviarEmail(aluno.getEmail(), "Recuperação de Senha" ,"Sua senha atual é: " + senha);
 	}
 	
 	public ArrayList<Aluno> getTodosOsAlunos() {

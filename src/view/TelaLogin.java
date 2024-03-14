@@ -67,10 +67,11 @@ public class TelaLogin extends TelaPadrao{
 		bLogin.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				String login = tLogin.getText();
-				String senha = tSenha.getText();
+				AlunoDTO aluno = new AlunoDTO();
+				aluno.setEmail(tLogin.getText());
+				aluno.setSenha(tSenha.getText()); ;
 				try {
-					getAlunoController().setUsuario(getAlunoController().getAlunoServices().login(login, senha, getAlunoController().getAlunoServices()));
+					getAlunoController().setUsuario(getAlunoController().getAlunoServices().login(aluno));
 					AlunoDTO usuario = getAlunoController().getUsuario();
 					if (usuario != null) {
 						dispose();

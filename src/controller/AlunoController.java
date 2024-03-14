@@ -41,7 +41,7 @@ public class AlunoController {
 		}else if (!senha.equals(senha2)) {
 			throw new SenhaDiferenteException();
 		} else{
-			AlunoServices.validarEmail(email);
+			AlunoServices.validarEmail(a);
 			alunoDAO.cadastrarAluno(a);
 		}
 	}
@@ -65,8 +65,7 @@ public class AlunoController {
 			throw new SenhaMuitoPequenaException();
 		}
 		aServices.emailExiste(a);
-		AlunoServices.validarEmail(a.getCEmail());
-		
+		AlunoServices.validarEmail(a);
 		alunoDAO.editarAluno(a);
 		
 		

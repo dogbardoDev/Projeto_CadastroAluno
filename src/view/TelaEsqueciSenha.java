@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 
 import org.apache.commons.mail.EmailException;
 
+import model.dto.AlunoDTO;
 import model.excecoes.EmailNaoEncontradoException;
 import view.fabricacomponentes.FabricaIcones;
 import view.fabricacomponentes.FabricaJButton;
@@ -76,7 +77,9 @@ public class TelaEsqueciSenha extends TelaPadrao{
 				}
 				else{
 					try {
-					getAlunoController().getAlunoServices().mandarSenhaPorEmail(tEmail.getText());
+					AlunoDTO aluno = new AlunoDTO();
+					aluno.setEmail(tEmail.getText());
+					getAlunoController().getAlunoServices().mandarSenhaPorEmail(aluno);
 					FabricaJOptionPane.criarMsg("Senha Enviada por Email!");
 					dispose();
 					new TelaLogin();

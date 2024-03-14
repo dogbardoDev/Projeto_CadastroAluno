@@ -16,7 +16,7 @@ public interface DAO {
 	void cadastrarAluno(AlunoDTO a) 
 			throws EmailInvalidoException,EmailDiferenteException, SenhaMuitoPequenaException, SenhaDiferenteException, CamposVaziosException, EmailJaCadastradoException, AlunoJaMatriculadoException;
 	
-	void adicionarAluno (Aluno a) throws AlunoJaMatriculadoException, EmailJaCadastradoException;
+	void adicionarAluno (AlunoDTO a) throws AlunoJaMatriculadoException, EmailJaCadastradoException;
 
 	void excluirAluno(AlunoDTO a);
 	
