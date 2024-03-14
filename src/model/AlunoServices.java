@@ -12,6 +12,7 @@ import model.excecoes.CredenciaisInvalidasException;
 import model.excecoes.EmailInvalidoException;
 import model.excecoes.EmailJaCadastradoException;
 import model.excecoes.EmailNaoEncontradoException;
+import model.excecoes.SenhaAlteradaException;
 
 
 public class AlunoServices{
@@ -62,20 +63,23 @@ public class AlunoServices{
 
 
 
-	public AlunoDTO login(AlunoDTO aluno) throws CredenciaisInvalidasException {
+	public AlunoDTO login(AlunoDTO aluno) throws CredenciaisInvalidasException, SenhaAlteradaException {
 
-		for(Aluno a: getTodosOsAlunos()) {
-			if (a.getEmail().equalsIgnoreCase(aluno.getEmail()) && a.getSenha().equals(aluno.getSenha())) {
-				aluno = new AlunoDTO();
-				aluno.setNome(a.getNome());
-				aluno.setEmail(a.getEmail());
-				aluno.setSenha(a.getSenha());
-				aluno.setMatricula(a.getMatricula());
-				aluno.setSexo(a.getSexo());
-				
-				return aluno;
-			}
-		}throw new CredenciaisInvalidasException();
+		for (Aluno a : getTodosOsAlunos()) {
+	        if (a.getEmail().equalsIgnoreCase(aluno.getEmail())) {
+	            if (!a.getSenhaAntiga().isEmpty() && a.getSenhaAntiga().equals(aluno.getSenha()) && !a.getSenha().equals(aluno.getSenha())) {  
+	                throw new SenhaAlteradaException();
+	            } else if (a.getSenha().equals(aluno.getSenha())) {
+	                aluno.setNome(a.getNome());
+	                aluno.setEmail(a.getEmail());
+	                aluno.setSenha(a.getSenha());
+	                aluno.setMatricula(a.getMatricula());
+	                aluno.setSexo(a.getSexo());
+	                return aluno;
+	            }
+	        }
+	    }
+	    throw new CredenciaisInvalidasException();
 	}
 	
 

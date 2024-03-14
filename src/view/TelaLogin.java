@@ -14,6 +14,7 @@ import controller.AlunoController;
 import model.Aluno;
 import model.dto.AlunoDTO;
 import model.excecoes.CredenciaisInvalidasException;
+import model.excecoes.SenhaAlteradaException;
 import view.fabricacomponentes.*;
 
 public class TelaLogin extends TelaPadrao{
@@ -71,13 +72,14 @@ public class TelaLogin extends TelaPadrao{
 				aluno.setEmail(tLogin.getText());
 				aluno.setSenha(tSenha.getText()); ;
 				try {
-					getAlunoController().setUsuario(getAlunoController().getAlunoServices().login(aluno));
+					getAlunoController();
+					AlunoController.setUsuario(getAlunoController().getAlunoServices().login(aluno));
 					AlunoDTO usuario = getAlunoController().getUsuario();
 					if (usuario != null) {
 						dispose();
 						new TelaHomeAluno();
 					}
-				} catch (CredenciaisInvalidasException e1) {
+				} catch (CredenciaisInvalidasException | SenhaAlteradaException e1) {
 					FabricaJOptionPane.criarMsgErro(e1.getMessage());
 				}
 			}

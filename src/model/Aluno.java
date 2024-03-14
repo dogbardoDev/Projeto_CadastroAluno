@@ -5,10 +5,10 @@ import model.dto.AlunoDTO;
 public class Aluno{
 	
 	private AlunoDTO alunoDTO = new AlunoDTO();
-	
 	private String nome;
 	private String email;
 	private String senha;
+	private String senhaAntiga = "";
 	private String matricula;
 	private Sexo sexo;
 	
@@ -71,5 +71,12 @@ public class Aluno{
 	
 	public void setMatricula(String m) {
 		matricula = m;
+	}
+	public String getSenhaAntiga() {
+		return senhaAntiga;
+	}
+
+	public void setSenhaAntiga(String senhaAntiga) {
+		this.senhaAntiga = senhaAntiga;
 	}
 }

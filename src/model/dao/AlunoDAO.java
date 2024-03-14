@@ -1,14 +1,13 @@
 package model.dao;
 
 import java.util.ArrayList;
+
+import controller.AlunoController;
 import model.Aluno;
 import model.AlunoServices;
 import model.dto.AlunoDTO;
 import model.excecoes.AlunoJaMatriculadoException;
-import model.excecoes.CamposVaziosException;
-import model.excecoes.EmailInvalidoException;
 import model.excecoes.EmailJaCadastradoException;
-import model.excecoes.SenhaMuitoPequenaException;
 
 public class AlunoDAO implements DAO{
 
@@ -46,12 +45,13 @@ public class AlunoDAO implements DAO{
 	
 
 	@Override
-	public void editarAluno(AlunoDTO alunoDTO) 
-			throws EmailInvalidoException, SenhaMuitoPequenaException, CamposVaziosException, EmailJaCadastradoException, AlunoJaMatriculadoException {
+	public void editarAluno(AlunoDTO alunoDTO) {
 		for(Aluno aluno:aServices.getTodosOsAlunos()) {
 			if(aluno.getMatricula().equals(alunoDTO.getMatricula())){
+				AlunoController.setUsuario(alunoDTO);
 				aluno.setNome(alunoDTO.getNome());
 				aluno.setEmail(alunoDTO.getCEmail());
+				aluno.setSenhaAntiga(aluno.getSenha());
 				aluno.setSenha(alunoDTO.getCSenha());
 				aluno.setMatricula(alunoDTO.getMatricula());
 				aluno.setSexo(alunoDTO.getSexo());

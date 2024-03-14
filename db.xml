@@ -1,21 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <model.AlunoServices>
-  <todosOsAlunos>
-    <model.Aluno>
-      <alunoDTO/>
-      <nome>Mia Pomba</nome>
-      <email>miapomba@gmail.com</email>
-      <senha>12345678</senha>
-      <matricula>123454321234</matricula>
-      <sexo>MASCULINO</sexo>
-    </model.Aluno>
-    <model.Aluno>
-      <alunoDTO/>
-      <nome>andeson da silva santos</nome>
-      <email>anderson@gmail.com</email>
-      <senha>12345678</senha>
-      <matricula>123454321265</matricula>
-      <sexo>MASCULINO</sexo>
-    </model.Aluno>
-  </todosOsAlunos>
+  <todosOsAlunos/>
 </model.AlunoServices>

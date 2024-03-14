@@ -41,6 +41,7 @@ public class AlunoController {
 		}else if (!senha.equals(senha2)) {
 			throw new SenhaDiferenteException();
 		} else{
+			
 			AlunoServices.validarEmail(a);
 			alunoDAO.cadastrarAluno(a);
 		}
@@ -66,6 +67,8 @@ public class AlunoController {
 		}
 		aServices.emailExiste(a);
 		AlunoServices.validarEmail(a);
+		a.setEmail(a.getCEmail());
+		a.setSenha(a.getCSenha());
 		alunoDAO.editarAluno(a);
 		
 		
@@ -76,7 +79,7 @@ public class AlunoController {
 		return usuario;
 	}
 	
-	public void setUsuario(AlunoDTO u) {
+	public static void setUsuario(AlunoDTO u) {
 		usuario = u;
 	}
 	

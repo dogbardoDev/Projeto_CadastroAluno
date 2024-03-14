@@ -14,12 +14,12 @@ import model.excecoes.SenhaMuitoPequenaException;
 public interface DAO {
 	
 	void cadastrarAluno(AlunoDTO a) 
-			throws EmailInvalidoException,EmailDiferenteException, SenhaMuitoPequenaException, SenhaDiferenteException, CamposVaziosException, EmailJaCadastradoException, AlunoJaMatriculadoException;
+			throws EmailJaCadastradoException, AlunoJaMatriculadoException;
 	
 	void adicionarAluno (AlunoDTO a) throws AlunoJaMatriculadoException, EmailJaCadastradoException;
 
 	void excluirAluno(AlunoDTO a);
 	
-	void editarAluno(AlunoDTO a) throws EmailInvalidoException, SenhaMuitoPequenaException, CamposVaziosException, EmailJaCadastradoException, AlunoJaMatriculadoException;
+	void editarAluno(AlunoDTO a);
 
 }
