@@ -76,9 +76,6 @@ public class AlunoController {
 		
 	}
 	
-	public String recuperarEmailPorMatricula(AlunoServices central, String matricula) {
-		return alunoDAO.recuperarEmailPorMatricula(central, matricula);
-	}
 	
 	public AlunoDTO getUsuario() {
 		return usuario;
