@@ -21,6 +21,5 @@ public interface DAO {
 	void excluirAluno(AlunoDTO a);
 	
 	void editarAluno(AlunoDTO a) throws EmailInvalidoException, SenhaMuitoPequenaException, CamposVaziosException, EmailJaCadastradoException, AlunoJaMatriculadoException;
-	
-	String recuperarEmailPorMatricula(AlunoServices central, String matricula);
+
 }

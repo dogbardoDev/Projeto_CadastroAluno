@@ -66,15 +66,6 @@ public class AlunoDAO implements DAO{
 		}
 	}	
 
-	@Override
-	public String recuperarEmailPorMatricula(AlunoServices central, String matricula) {
-		for(Aluno aluno: central.getTodosOsAlunos()) {
-			if(aluno.getMatricula().equals(matricula)) {
-				return aluno.getEmail();
-			}
-		}
-		return null;
-	}
 	public DB getDados() {
 		return dados;
 	}
