@@ -15,6 +15,7 @@ import view.TelaEditarInformacoesAluno;
 import view.TelaHomeAluno;
 import view.TelaLogin;
 import view.TelaPadrao;
+import view.TelaVisualizarAluno;
 
 public class FabricaJMenuBar{
 	
@@ -30,6 +31,15 @@ public class FabricaJMenuBar{
 			public void actionPerformed(ActionEvent e) {
 				tela.dispose();
 				new TelaHomeAluno();
+			}
+		});
+		JMenuItem aluno = new JMenuItem("Minhas Informações", FabricaImagens.LISTAR);
+		mOpcoes.add(aluno);
+		aluno.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tela.dispose();
+				AlunoDTO aluno = (AlunoDTO) alunoController.getUsuario();
+				new TelaVisualizarAluno(aluno);
 			}
 		});
 		
