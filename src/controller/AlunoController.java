@@ -2,9 +2,7 @@ package controller;
 
 import model.Aluno;
 import model.AlunoServices;
-import model.Sexo;
 import model.dao.AlunoDAO;
-import model.dao.DB;
 import model.dto.AlunoDTO;
 import model.excecoes.AlunoJaMatriculadoException;
 import model.excecoes.CamposVaziosException;

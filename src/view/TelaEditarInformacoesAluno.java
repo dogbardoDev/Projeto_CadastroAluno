@@ -15,7 +15,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
-import model.Aluno;
 import model.Sexo;
 import model.dto.AlunoDTO;
 import model.excecoes.AlunoJaMatriculadoException;

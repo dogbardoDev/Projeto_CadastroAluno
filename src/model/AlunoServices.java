@@ -6,17 +6,12 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.mail.EmailException;
 
-import controller.AlunoController;
 import model.dto.AlunoDTO;
 import model.excecoes.AlunoJaMatriculadoException;
-import model.excecoes.CamposVaziosException;
 import model.excecoes.CredenciaisInvalidasException;
-import model.excecoes.EmailDiferenteException;
 import model.excecoes.EmailInvalidoException;
 import model.excecoes.EmailJaCadastradoException;
 import model.excecoes.EmailNaoEncontradoException;
-import model.excecoes.SenhaDiferenteException;
-import model.excecoes.SenhaMuitoPequenaException;
 
 
 public class AlunoServices{

@@ -1,18 +1,13 @@
 package model.dao;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import model.Aluno;
 import model.AlunoServices;
-import model.Sexo;
 import model.dto.AlunoDTO;
 import model.excecoes.AlunoJaMatriculadoException;
 import model.excecoes.CamposVaziosException;
-import model.excecoes.EmailDiferenteException;
 import model.excecoes.EmailInvalidoException;
 import model.excecoes.EmailJaCadastradoException;
-import model.excecoes.SenhaDiferenteException;
 import model.excecoes.SenhaMuitoPequenaException;
 
 public class AlunoDAO implements DAO{
