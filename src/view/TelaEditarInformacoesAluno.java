@@ -147,6 +147,7 @@ public class TelaEditarInformacoesAluno extends TelaPadrao{
 
 	private void adicionarComboBox() {
 		cGenero = FabricaJComboBox.criarJComboBpx(opcoes, 487, 310, 120, 30, Color.WHITE, Color.BLACK, 12);
+		cGenero.setEnabled(false);
 		add(cGenero);
 	}
 
@@ -170,8 +171,10 @@ public class TelaEditarInformacoesAluno extends TelaPadrao{
 
 				try {
 					
-					
-					getAlunoController().editarAluno(aluno, tNome.getText(), tNovoEmail.getText(), tNovaSenha.getText());
+					aluno.setNome(tNome.getText());
+					aluno.setCEmail(tNovoEmail.getText());
+					aluno.setCSenha(tNovaSenha.getText());
+					getAlunoController().editarAluno(aluno);
 					FabricaJOptionPane.criarMsgValido("Edição feita com sucesso!");
 					dispose();
 					

@@ -42,10 +42,10 @@ public class AlunoServices{
 		return false;
 	}
 
-	public boolean emailExiste(String email,AlunoDTO alunoDTO) throws EmailJaCadastradoException {
+	public boolean emailExiste(AlunoDTO alunoDTO) throws EmailJaCadastradoException {
 		for (Aluno a : todosOsAlunos) {
 			if (!a.getMatricula().equals(alunoDTO.getMatricula())) {
-				if (a.getEmail().equalsIgnoreCase(email)) {
+				if (a.getEmail().equalsIgnoreCase(alunoDTO.getCEmail())) {
 					throw new EmailJaCadastradoException();
 				}
 			}

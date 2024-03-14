@@ -53,15 +53,13 @@ public class AlunoDAO implements DAO{
 	@Override
 	public void editarAluno(AlunoDTO alunoDTO) 
 			throws EmailInvalidoException, SenhaMuitoPequenaException, CamposVaziosException, EmailJaCadastradoException, AlunoJaMatriculadoException {
-		for(int i = 0; i < aServices.getTodosOsAlunos().size(); i++) {
-			if(aServices.getTodosOsAlunos().get(i).getMatricula().equals(alunoDTO.getMatricula())){
-				Aluno a = aServices.getTodosOsAlunos().get(i);
-				a.setNome(alunoDTO.getNome());
-				a.setEmail(alunoDTO.getEmail());
-				a.setSenha(alunoDTO.getSenha());
-				a.setMatricula(alunoDTO.getMatricula());
-				a.setSexo(alunoDTO.getSexo());
-				aServices.getTodosOsAlunos().set(i, a);
+		for(Aluno aluno:aServices.getTodosOsAlunos()) {
+			if(aluno.getMatricula().equals(alunoDTO.getMatricula())){
+				aluno.setNome(alunoDTO.getNome());
+				aluno.setEmail(alunoDTO.getCEmail());
+				aluno.setSenha(alunoDTO.getCSenha());
+				aluno.setMatricula(alunoDTO.getMatricula());
+				aluno.setSexo(alunoDTO.getSexo());
 				dados.salvarDados(aServices);
 				break;
 			}
